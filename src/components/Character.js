@@ -1,24 +1,22 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 
-function Character({ characters }) {
+function Character({ charname, details }) {
+  const [showDetails, setShowDetails] = useState(false);
+  const getDetails= ()=>{
+    setShowDetails(!showDetails)
+  } 
 
-  const [showDetails, setShowDetails] = useState(false)
-
-   
   return (
     <div>
-      {characters.map(char =>
-        <div key={char.name}>
-          <h3>{char.name}</h3>
-          {showDetails && <p>{char.details}</p>}
-          <button disabled={!"disabled"} onClick={()=>setShowDetails(!showDetails)}>{showDetails ? "Show Less" : "Show More"}</button>
-        </div>)
-      }
+      <div>
+        <h3>{charname}</h3>
+        {showDetails && <p>{details}</p>}
+        <button onClick={getDetails}>
+          {showDetails ? "Show More" : "Show Less"}
+        </button>
+      </div>
     </div>
-
-  )
-
-};
-
+  );
+}
 
 export default Character;
